@@ -51,11 +51,8 @@
 				show_results($post_id);
 
 				
-		var $comment_box_offset = $('#respond').offset().top + 'px';
+		
 
-		setTimeout(function() {
-  $("html, body").animate({ scrollTop: $comment_box_offset  }, 450);
-}, 2000);
 		
 
 				
@@ -73,6 +70,7 @@
 				
 
 	})//$(document).on('click', 'button.answer_divs', function(){
+
 	
 
 	
@@ -119,60 +117,53 @@
 
 			success:function(data){
 
-				console.log(data);
+	var answer_1 = data.social_poll_answer_1;
 
-				
+var answer_2 = data.social_poll_answer_2;
 
-				var answer_1 = data.social_poll_answer_1;
 
-				var answer_2 = data.social_poll_answer_2;
+var answer_1_votes = data.social_poll_answer_1.total_votes;
 
-				
+var answer_2_votes = data.social_poll_answer_2.total_votes;
+var answer_1_percent = (answer_1_votes/(answer_1_votes+answer_2_votes)*100).toFixed(2);
+var answer_2_percent = (answer_2_votes/(answer_1_votes+answer_2_votes)*100).toFixed(2);
 
-				var answer_1_votes = data.social_poll_answer_1.total_votes;
+var answer_1_text = data.social_poll_answer_1.answer_text;
 
-				var answer_2_votes = data.social_poll_answer_2.total_votes;
+var answer_2_text = data.social_poll_answer_2.answer_text;
 
-				
 
-				var answer_1_text = data.social_poll_answer_1.answer_text;
 
-				var answer_2_text = data.social_poll_answer_2.answer_text;
+var $results_html = '<div class="one_result_box" id="results_box_'+$post_id+'"><p><span class="results_answer_text">'+answer_1_text+'</span> :<span class="results_answer_value">'+answer_1_percent+'</span></p>'
 
-			
++'<p><span class="results_answer_text">'+answer_2_text+'</span> :<span class="results_answer_value">'+answer_2_percent+'</div></p></div>';
 
-				
+//$('#social_polling_see_results_wrapper').html($results_html);
 
-				var $results_html = '<div class="one_result_box" id="results_box_'+$post_id+'"><p><span class="results_answer_text">'+answer_1_text+'</span> :<span class="results_answer_value">'+answer_1_votes+'</span></p>'
 
-									+'<p><span class="results_answer_text">'+answer_2_text+'</span> :<span class="results_answer_value">'+answer_2_votes+'</div></p></div>';
 
-				//$('#social_polling_see_results_wrapper').html($results_html);
+//var $answer1_html = answer_1_text+' '+answer_1_votes;
 
-				
+//var $answer2_html = answer_2_text+' '+answer_2_votes;
 
-				
 
-				//var $answer1_html = answer_1_text+' '+answer_1_votes;
+var $answer1_html = '<h1>'+answer_1_percent+'%</h1>Votes';
 
-				//var $answer2_html = answer_2_text+' '+answer_2_votes;
+var $answer2_html = '<h1>'+answer_2_percent+'%</h1>Votes';	
 
-				
 
-				var $answer1_html = '<h1>'+answer_1_votes+'</h1> votes';
 
-				var $answer2_html = '<h1>'+answer_2_votes+'</h1> votes';		
+$('#answer_1_wrapper .poll_results').html($answer1_html);
 
-									
+$('#answer_2_wrapper .poll_results').html($answer2_html);
 
-				
 
-				$('#answer_1_wrapper .poll_results').html($answer1_html);
+		setTimeout(function() {
+			var $comment_box_offset = $('#respond').offset().top + 'px';
+  $("html, body").animate({ scrollTop: $comment_box_offset  }, 450);
+}, 2000);
 
-				$('#answer_2_wrapper .poll_results').html($answer2_html);
-
-				$('#social_polling_see_results_wrapper').html('');
-
+$('#social_polling_see_results_wrapper').html('You Already Voted');
 				
 
 				
@@ -209,9 +200,10 @@
 
 	//----------------------------
 
-	
+	/*
 
-	$(document).on('click', '.joindiscussion', function(){
+
+		$(document).on('click', 'button.answer_divs', function(){
 
 		var $comment_box_offset = $('#respond').offset().top + 'px';
 
@@ -222,7 +214,7 @@
 	})
 
 	
-
+*/
 	
 
 	//----------------------------
@@ -237,10 +229,10 @@
 
 	
 
-	
+	document.getElementById('comment').placeholder = 'Why did you vote like that?';
 
 	
-
+ 
 	
 
 	

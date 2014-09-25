@@ -1,4 +1,4 @@
-=== BECAUSE Commenting System===
+=== BECAUSE Comment System===
 Contributors: (tjsantilo)
 Donate link: www.teambecause.com
 Tags: comments,spam,polling, opinions,community,because,social,moderation,conversation, engagement,interactions,insight
@@ -6,9 +6,9 @@ Tags: comments,spam,polling, opinions,community,because,social,moderation,conver
 Requires at least: 3.5.1
 Tested up to: 4.0
 <<<<<<< .mine
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 =======
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 >>>>>>> .r969865
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html

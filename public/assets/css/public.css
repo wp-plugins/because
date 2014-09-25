@@ -54,6 +54,7 @@ border:5px solid #1e8cbe;
 .poll_results h1{
 	line-height:1em;
 	margin-bottom:0px;
+	color:#fff!important;
 	
 }
 .poll_results {
@@ -90,7 +91,7 @@ color:#ffffff;
 	border-radius:0px;
 	display:block;
 	text-align:center;
-	font-size:2em;
+	font-size:1.25em;
 	width:100%;
 	border:none;
 	-moz-transition: all .4s; 
@@ -260,7 +261,7 @@ margin:0;
 color: inherit;
 padding: 0px 0px;
 border-radius:60px;
-width:25px;
+width:20px;
 height:auto;
 text-align:center;
 line-height:1!important;
@@ -399,12 +400,25 @@ ol, ol ol, ol ol ol, ul, ul ul, ul ul ul
 	margin:0;
 	padding:0;
 	height:auto;
-	width:25px;
+	width:20px;
 }
 
 .comment-body a img:hover
 {
 	opacity: 0.5;
+}
+
+
+label.answer_label{
+color:black;
+}
+
+#social_polling_already_voted_wrapper{
+display: none;
+font-size: 1.4em;
+text-align: center;
+width: 100%;
+padding: 1em;
 }
 /*
 //----------------------------

@@ -594,7 +594,6 @@ class Social_Polling {
             
             
             
-            
             </div>
 			<?php endif;//$active.
 			//echo" <br /><hr /><pre style='background-color:black; color:white;'>".htmlspecialchars(print_r($post_meta,true))."</pre>";
