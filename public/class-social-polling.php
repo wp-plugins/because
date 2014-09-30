@@ -454,7 +454,7 @@ class Social_Polling {
 			endif;
 			
 			
-			//Lets take our post_id and use this to get our to possible answers.
+			//Lets take our post_id and use this to get our two possible answers.
 			$answers = array();
 			$answer_1 = get_post_meta($post_id,'_social_polling_answer_one_field',true ); 
 			$answer_2 = get_post_meta($post_id,'_social_polling_answer_two_field',true ); 
@@ -586,7 +586,7 @@ class Social_Polling {
             
             	<div id="social_polling_see_results_wrapper"><?php echo _e( 'Vote to see results', 'myplugin_textdomain' ); ?></div>
             
-           
+           <div id="social_polling_already_voted_wrapper">Note: You have already voted on this poll</div> 
             
             
             

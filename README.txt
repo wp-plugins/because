@@ -6,9 +6,9 @@ Tags: comments,spam,polling, opinions,community,because,social,moderation,conver
 Requires at least: 3.5.1
 Tested up to: 4.0
 <<<<<<< .mine
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 =======
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 >>>>>>> .r969865
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -17,12 +17,13 @@ Because replaces your current comment system with a combination of polling and c
 
 == Description ==
 
-Content providers created comment sections to engage audiences. However, most websites see comment rates of less than 1%, and three-quarters of those are off-topic or toxic remarks.
+Many websites contain comment sections to encourage user interaction and feedback. Unfortunately, those sections are often riddled with tiring explanations, narrow-minded views and potentially toxic remarks.
 
-Because is a new commenting platform that increases audience engagement by providing new avenues for channelling audience discussions.
+At Because we see this as an opportunity for change. With our “poll and discuss” method, users are able to submit their own ideas, thoughts and feelings within a given character limit. This encourages clear and concise responses to every post.  In addition, users benefit from a platform that welcomes many perspectives, giving users a voice in commenting they've never had before.
 
-At Because, we've found a way to increase audience engagement and decrease irrelevant interactions. 
-We empower the audience to give their opinion, and give content providers the discussion their content deserves!
+But we’re not stopping there. We recognize the potential for content managers to use information provided by a more engaged user base  for advertising, site traffic monitoring and content feedback. By better serving users, Because can better serve sites.
+
+We’re giving users a voice. And websites a choice.  
 
 == Installation ==
 

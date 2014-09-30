@@ -163,7 +163,7 @@ $('#answer_2_wrapper .poll_results').html($answer2_html);
   $("html, body").animate({ scrollTop: $comment_box_offset  }, 450);
 }, 2000);
 
-$('#social_polling_see_results_wrapper').html('You Already Voted');
+//$('#social_polling_see_results_wrapper').html('You Already Voted');
 				
 
 				
@@ -228,11 +228,22 @@ $('#social_polling_see_results_wrapper').html('You Already Voted');
 	
 
 	
+//change placeholder text, commented out for now but might need it again
 
-	document.getElementById('comment').placeholder = 'Why did you vote like that?';
+	//document.getElementById('comment').placeholder = 'Why did you vote like that?';
 
 	
- 
+ $("#textarea")
+  .focus(function() {
+        if (this.value === this.defaultValue) {
+            this.value = '';
+        }
+  })
+  .blur(function() {
+        if (this.value === '') {
+            this.value = this.defaultValue;
+        }
+});
 	
 
 	

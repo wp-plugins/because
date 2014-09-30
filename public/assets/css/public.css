@@ -232,7 +232,7 @@ position:relative;
 .sp_comment-list  p{
 	margin-bottom:0px;
 	word-wrap:break-word;
-	
+	margin-left:45px;
 }
 
 .sp_comment-list .reply {
@@ -391,7 +391,7 @@ ol, ol ol, ol ol ol, ul, ul ul, ul ul ul
 .comment-body
 {
 	border-bottom: 1px solid #ccc;
-	min-height: 90px;
+	min-height: 100px;
 }
 
 .votingbutton
@@ -400,7 +400,7 @@ ol, ol ol, ol ol ol, ul, ul ul, ul ul ul
 	margin:0;
 	padding:0;
 	height:auto;
-	width:20px;
+	width:20px!important;
 }
 
 .comment-body a img:hover
