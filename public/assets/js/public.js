@@ -51,7 +51,12 @@
 				show_results($post_id);
 
 				
-		
+		if(data === "You already voted"){
+$('#social_polling_see_results_wrapper').html('You Already Voted');	
+}
+else{
+$('#social_polling_see_results_wrapper').html('');
+}
 
 		
 
@@ -147,9 +152,9 @@ var $results_html = '<div class="one_result_box" id="results_box_'+$post_id+'"><
 //var $answer2_html = answer_2_text+' '+answer_2_votes;
 
 
-var $answer1_html = '<h1>'+answer_1_percent+'%</h1>Votes';
+var $answer1_html = '<h1>'+answer_1_percent+'%</h1>';
 
-var $answer2_html = '<h1>'+answer_2_percent+'%</h1>Votes';	
+var $answer2_html = '<h1>'+answer_2_percent+'%</h1>';	
 
 
 
@@ -233,7 +238,7 @@ $('#answer_2_wrapper .poll_results').html($answer2_html);
 	//document.getElementById('comment').placeholder = 'Why did you vote like that?';
 
 	
- $("#textarea")
+ $("textarea")
   .focus(function() {
         if (this.value === this.defaultValue) {
             this.value = '';
