@@ -85,7 +85,7 @@ if ( post_password_required() ) {
 
 	<?php endif; // have_comments() ?>
 
-	<?php comment_form(); ?>
+	<?php
 		$active = get_post_meta($post->ID, 'social_polling_active_field', true ) == 'yes' ? true : false;
 if ($active){
 $args = array(
@@ -96,4 +96,5 @@ comment_form($args);
 else{
 comment_form($args);
 }
+?>
 </div><!-- #comments -->
