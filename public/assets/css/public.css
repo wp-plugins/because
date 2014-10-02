@@ -388,6 +388,11 @@ ol, ol ol, ol ol ol, ul, ul ul, ul ul ul, ul ol, ol ul, ol ol ul, ol ul ol, ol u
 }
 
 
+ol li
+{
+	list-style-type: none!important;
+}
+
 .comment-body
 {
 	border-bottom: 1px solid #ccc;
