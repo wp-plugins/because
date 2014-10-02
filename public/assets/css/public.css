@@ -232,7 +232,7 @@ position:relative;
 .sp_comment-list  p{
 	margin-bottom:0px;
 	word-wrap:break-word;
-	margin-left:45px;
+	margin-left:10%;
 }
 
 .sp_comment-list .reply {
@@ -382,9 +382,9 @@ text-shadow: 1px 1px #666;
 
 /* Additions 7/25/14 BB - enhanced compatibility across sites and browsers */
 
-ol, ol ol, ol ol ol, ul, ul ul, ul ul ul
+ol, ol ol, ol ol ol, ul, ul ul, ul ul ul, ul ol, ol ul, ol ol ul, ol ul ol, ol ul ul, ul ul ol, 
 {
-	list-style-type: none;
+	list-style-type: none!important;
 }
 
 
