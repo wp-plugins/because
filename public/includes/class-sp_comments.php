@@ -176,19 +176,18 @@ class spComments {
 			$table = $wpdb->prefix . "postmeta";
 			$query = "SELECT meta_key FROM $table WHERE post_id='" . $post_id . "' AND meta_value='" . $vote_val->vote_value . "'";
 			$ans_choice = $wpdb->get_row($query);
-                   
+            add_comment_meta($comment_id,'test','test');   
 
             // add vote identifier to the comment
 			if ($ans_choice->meta_key == "social_polling_answer_one_field" || $ans_choice->meta_key == "_social_polling_answer_one_field"){
 				add_comment_meta($comment_id,'vote_choice','one');
 			}
-			elseif ($ans_choice->meta_key == "social_polling_answer_two_field" || $ans_choice->meta_key == "social_polling_answer_two_field"){
+			elseif ($ans_choice->meta_key == "social_polling_answer_two_field" || $ans_choice->meta_key == "_social_polling_answer_two_field"){
 				add_comment_meta($comment_id,'vote_choice','two');	
 			}
 		}
 	}
 
-	
 
 	  /**
 
@@ -1549,18 +1548,20 @@ function comment_vote_choice( $comment_text){
 
         $comment_ID = get_comment_ID();
     
-        echo "<p";
+        $retVal = "<p";
         
         $test = get_comment_meta($comment_ID,"vote_choice",true);
 
         if ($test == "one"){
-            echo " class='comment_voted_a'";
+            $retVal = $retVal . " class='comment_voted_a'";
         }
         elseif ($test == "two") {
-        	echo " class='comment_voted_b'";
+        	$retVal = $retVal . " class='comment_voted_b'";
         }
         
-        echo ">$comment_text</p>";
+        $retVal = $retVal . ">$comment_text</p>";
+
+        return $retVal;
 }
 
 function mytheme_comment($comment, $args, $depth) {
