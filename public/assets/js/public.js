@@ -50,21 +50,15 @@
 
 				show_results($post_id);
 
-				
-		if(data === "You already voted"){
-$('#social_polling_see_results_wrapper').html('You Already Voted');	
-}
-else{
-$('#social_polling_see_results_wrapper').html('');
-}
-
-		
-
-				
+				if(data === "already_voted"){
+					$('#social_polling_see_results_wrapper').html('You Already Voted');	
+				}
+				else{
+					$('#social_polling_see_results_wrapper').html('');
+					$('.sp_comment-list').html(data);
+				}
 
 				//console.log(data+ajaxurl);
-
-	
 
 			}//success
 

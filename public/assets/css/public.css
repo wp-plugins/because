@@ -26,12 +26,14 @@
 	background-color:transparent !important;
 	
 }
-.answer_divs:focus .answer_image,
-.answer_divs:HOVER .answer_image{
-border:5px solid #1e8cbe;
+#answer_1_wrapper.answer_divs:focus .answer_image,
+#answer_1_wrapper.answer_divs:HOVER .answer_image{
+	border:5px solid #1e8cbe;
+}
 
-	
-	
+#answer_2_wrapper.answer_divs:focus .answer_image,
+#answer_2_wrapper.answer_divs:HOVER .answer_image{
+	border:5px solid #1ebe50;
 }
 
 .answer_image{
@@ -424,6 +426,14 @@ font-size: 1.4em;
 text-align: center;
 width: 100%;
 padding: 1em;
+}
+
+.comment_voted_a{
+	color: #1e8cbe;
+}
+
+.comment_voted_b{
+	color: #1ebe50;
 }
 /*
 //----------------------------

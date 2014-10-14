@@ -305,20 +305,75 @@ class Social_Polling {
 		// $already_voted = $wpdb->get_row("SELECT * FROM $table WHERE poll_id = ".$data['poll_id']." AND (voter_ip = '".$data['voter_ip']."'  ||    voter_id = '".$data['voter_id']."')" );	
 		 if($already_voted):
 		 //You already voted 
-		 return 'already_voted';
+		 	$response['vote_status'] = 'already_voted';
+		 	return $response;
 		 else:
 			//Do the vote	
 			 $do_vote = $wpdb->insert( $table, $data, $format );
 		 endif;//if($already_voted):
 		
 	    if($do_vote):
-		 return 'voted';
+			$response['vote_status'] = 'voted';
+	    	//modify comments to display 
+			$this->add_id_to_comments($data);
+			$response['new_comments'] = $this->update_comments($data);
 		else:
 		 return false;
 		endif;
 	 }//social_polling_vote
 	 
-	 
+	 private function add_id_to_comments($data){
+	 	global $wpdb;
+
+	 	$table = $wpdb->prefix . "postmeta";
+		$query = "SELECT meta_key FROM $table WHERE post_id='" . $data['poll_id'] . "' AND meta_value='" . $data['vote_value']. "'";
+		$ans_choice = $wpdb->get_row($query);
+
+		if ($ans_choice->meta_key == "social_polling_answer_one_field" || $ans_choice->meta_key == "_social_polling_answer_one_field"){
+			$choice = "one";
+		}
+		else if ($ans_choice->meta_key == "social_polling_answer_two_field" || $ans_choice->meta_key == "_social_polling_answer_two_field"){
+			$choice = "two";
+		}
+
+	 	$table = $wpdb->prefix . "comments";
+	 	$comments = $wpdb->get_results("SELECT comment_ID from $table where comment_post_ID='" . $data['poll_id'] . "' AND (comment_author_IP = '".$data['voter_ip']."'  ||    (user_id = '".$data['voter_id']."'  &&   user_id != '0' ))" );	
+
+	 	foreach($comments as $row){
+	 		add_comment_meta($row->comment_ID,'vote_choice',$choice);
+	 	}
+                
+        return;
+	 }
+
+	 private function update_comments($data){
+	 			
+				
+				$post_id = $data['poll_id'];
+				
+				$comment_args['post_id'] = $post_id;
+
+				$comments = get_comments( $comment_args );
+
+				ob_start();
+
+				wp_list_comments(array(
+
+							'callback' => 'mytheme_comment',
+
+							'walker' => new zipGun_walker_comment()
+
+							//'per_page' => 10, //Allow comment pagination
+
+							//'reverse_top_level' => $sortby == 'oldest' ? false : true //Show the latest comments at the top of the list
+
+				), $comments);
+
+				$updated_comments = ob_get_contents();
+
+				ob_end_clean;
+
+	 }
 	 
 	  public function get_poll_results($post_id){
 		 global $wpdb;
@@ -481,14 +536,15 @@ class Social_Polling {
 			
 			endif;
 			
-			switch($vote): 	
+			switch($vote[vote_status]): 	
 		 	case('voted'):
-				echo 'You were voting on Post '.get_post_meta($post_id,'social_polling_question_field',true );
-		 		echo 'You voted '.$vote_value;
+				// echo 'You were voting on Post '.get_post_meta($post_id,'social_polling_question_field',true );
+		 		// 	echo 'You voted '.$vote_value;
+		 		echo $vote['new_comments'];
 		  	break;
 			
 			case('already_voted'):
-				echo 'You already voted';
+				echo "already_voted";
 		  	break;			
 			
 			default:

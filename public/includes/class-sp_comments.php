@@ -80,7 +80,7 @@ class spComments {
 
 			add_action('wp_ajax_sp_Comments_Ajax',  array( $this,'sp_Comments_Ajax'));
 
-						
+			add_action('comment_post', array( $this,'check_user_vote'));
 
 			
 
@@ -152,7 +152,41 @@ class spComments {
 
 	}//Contruct
 
-	
+	// function to check if user has voted in the Polling
+
+	public function check_user_vote($comment_id){
+		global $wpdb;
+		
+		if ( is_user_logged_in() ):
+			$user_id = $this->get_voter('');	
+		else:
+			$user_id = md5($this->get_voter('ip_address'));	
+		endif;
+
+		$table = $wpdb->prefix . "social_polling";
+		$post_id = get_the_ID();
+
+		// check to see if the user has voted on the current poll
+		$query = "SELECT vote_value FROM $table WHERE poll_id='" . $post_id . "' AND (voter_ip = '".$user_id."'  ||    (voter_id = '".$user_id."'  &&   voter_id != '0' ))";
+		$vote_val = $wpdb->get_row($query);
+
+		if ($vote_val){
+			// if the user has voted then check to see which question in the poll the answer is
+
+			$table = $wpdb->prefix . "postmeta";
+			$query = "SELECT meta_key FROM $table WHERE post_id='" . $post_id . "' AND meta_value='" . $vote_val->vote_value . "'";
+			$ans_choice = $wpdb->get_row($query);
+                   
+
+            // add vote identifier to the comment
+			if ($ans_choice->meta_key == "social_polling_answer_one_field" || $ans_choice->meta_key == "_social_polling_answer_one_field"){
+				add_comment_meta($comment_id,'vote_choice','one');
+			}
+			elseif ($ans_choice->meta_key == "social_polling_answer_two_field" || $ans_choice->meta_key == "social_polling_answer_two_field"){
+				add_comment_meta($comment_id,'vote_choice','two');	
+			}
+		}
+	}
 
 	
 
@@ -1509,11 +1543,25 @@ function pre_comment_approved_filter($approved, $commentdata){
 
 }//CLASS spComments
 
+add_filter('comment_text', 'comment_vote_choice');
 
+function comment_vote_choice( $comment_text){
 
+        $comment_ID = get_comment_ID();
+    
+        echo "<p";
+        
+        $test = get_comment_meta($comment_ID,"vote_choice",true);
 
-
-
+        if ($test == "one"){
+            echo " class='comment_voted_a'";
+        }
+        elseif ($test == "two") {
+        	echo " class='comment_voted_b'";
+        }
+        
+        echo ">$comment_text</p>";
+}
 
 function mytheme_comment($comment, $args, $depth) {
 
