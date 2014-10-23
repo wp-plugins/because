@@ -6,9 +6,9 @@ Tags: comments,spam,polling, opinions,community,because,social,moderation,conver
 Requires at least: 3.5.1
 Tested up to: 4.0
 <<<<<<< .mine
-Stable tag: 1.3.9
+Stable tag: 1.4.0
 =======
-Stable tag: 1.3.9
+Stable tag: 1.4.0
 >>>>>>> .r969865
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -17,13 +17,9 @@ Because replaces your current comment system with a combination of polling and c
 
 == Description ==
 
-Many websites contain comment sections to encourage user interaction and feedback. Unfortunately, those sections are often riddled with tiring explanations, narrow-minded views and potentially toxic remarks.
+Because is an online commenting platform designed to enhance the interaction between site owners and users. Our “poll and discuss method” allows a site visitor to vote on a given topic and follow up with a response in 280 characters or less. This encourages commenters to provide well thought-out explanations from their own perspective. Other users can vote on a given comment, generating buzz on the site and encouraging returns to view trending comments. The better the response – the better the score. Everyday readers benefit from the convenience of viewing the best responses possible, and site owners can take advantage of the numerous opportunities from the information gathered. Information that can be used as a basis for advertising, site traffic monitoring and content feedback. 
 
-At Because we see this as an opportunity for change. With our “poll and discuss” method, users are able to submit their own ideas, thoughts and feelings within a given character limit. This encourages clear and concise responses to every post.  In addition, users benefit from a platform that welcomes many perspectives, giving users a voice in commenting they've never had before.
-
-But we’re not stopping there. We recognize the potential for content managers to use information provided by a more engaged user base  for advertising, site traffic monitoring and content feedback. By better serving users, Because can better serve sites.
-
-We’re giving users a voice. And websites a choice.  
+A more engaged community. More traffic. Better page rank. Audience insight. By better serving users, Because can better serve sites. Think of it as a new wave comment section. 
 
 == Installation ==
 

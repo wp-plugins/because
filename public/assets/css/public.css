@@ -355,6 +355,7 @@ width:90%;
 letter-spacing: -0.04em;
 color:#ffffff;
 text-shadow: 1px 1px #666;
+min-height:2em;
 }
 
 #submit:HOVER
