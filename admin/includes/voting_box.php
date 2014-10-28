@@ -54,6 +54,8 @@ class votingBox {
 		 * because save_post can be triggered at other times.
 		 */
 
+		global $wpdb;
+
 		// Check if our nonce is set.
 		if ( ! isset( $_POST['myplugin_inner_custom_box_nonce'] ) )
 			return $post_id;
@@ -85,7 +87,12 @@ class votingBox {
 		//Question
 		$social_polling_active_field = sanitize_text_field( $_POST['social_polling_active_field'] );
 		// Update the meta field.
-		update_post_meta( $post_id, 'social_polling_active_field', $social_polling_active_field );		
+		update_post_meta( $post_id, 'social_polling_active_field', $social_polling_active_field );	
+
+		// check to see if social polling fields were already populated
+		$old_social_polling_answer_one_field = get_post_meta( $post_id , '_social_polling_answer_one_field', true);
+		$old_social_polling_answer_two_field = get_post_meta( $post_id , '_social_polling_answer_two_field', true);
+		$update_table = $wpdb->prefix . "social_polling";	
 		
 					
 		//Question
@@ -102,6 +109,18 @@ class votingBox {
 		$social_polling_answer_one_image_id = sanitize_text_field( $_POST['social_polling_answer_one_image_id'] );
 		// Update the meta field.
 		update_post_meta( $post_id, 'social_polling_answer_one_image_id', $social_polling_answer_one_image_id );
+
+		if ($old_social_polling_answer_one_field){
+			$wpdb->update( $update_table, 
+					array(
+						'vote_value' => sanitize_title($social_polling_answer_one_field)
+					),
+					array(
+						'poll_id' => $post_id,
+						'vote_value' => $old_social_polling_answer_one_field
+					)
+			);
+		}
 		
 			
 		//Answer2
@@ -113,6 +132,18 @@ class votingBox {
 		$social_polling_answer_two_image_id = sanitize_text_field( $_POST['social_polling_answer_two_image_id'] );
 		// Update the meta field.
 		update_post_meta( $post_id, 'social_polling_answer_two_image_id', $social_polling_answer_two_image_id );
+
+		if ($old_social_polling_answer_two_field){
+			$wpdb->update( $update_table, 
+					array(
+						'vote_value' => sanitize_title($social_polling_answer_two_field)
+					),
+					array(
+						'poll_id' => $post_id,
+						'vote_value' => $old_social_polling_answer_two_field
+					)
+			);
+		}
 			
 		
 		$mydata = sanitize_text_field( $_POST['myplugin_new_field'] );
