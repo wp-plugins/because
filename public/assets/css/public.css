@@ -26,6 +26,20 @@
 	background-color:transparent !important;
 	
 }
+
+#answer_1_wrapper.answer_divs .answer_image{
+	background-color: #1b7eab;
+}
+
+#answer_2_wrapper.answer_divs .answer_image{
+	background-color: #1CB049;
+}
+
+.answer_divs .answer_image{
+	border:5px solid #c1c1c1;
+}
+
+
 #answer_1_wrapper.answer_divs:focus .answer_image,
 #answer_1_wrapper.answer_divs:HOVER .answer_image{
 	border:5px solid #1e8cbe;
