@@ -256,6 +256,14 @@ $('#answer_2_wrapper .poll_results').html($answer2_html);
 	//----------------------------
 
 	// Place your public-facing JavaScript here
+		
+		//revert textarea to blank value if default value
+		$(document).on('click','#submit',function(){
+			if($('#commentform textarea#comment').val()=="Thanks for your vote! Want to expand on that opinion? We want to know what you think!"){
+				$('#commentform textarea#comment').val('');
+			}
+
+		})
 
 		$(document).on('click', '.comment_vote_action', function(){
 
