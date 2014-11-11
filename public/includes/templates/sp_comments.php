@@ -89,7 +89,7 @@ if ( post_password_required() ) {
 		$active = get_post_meta($post->ID, 'social_polling_active_field', true ) == 'yes' ? true : false;
 if ($active){
 $args = array(
-'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" value="abcdefghj">Why did you vote the way you did?</textarea></p>'
+'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true" value="abcdefghj">Thanks for your vote! Want to expand on that opinion? We want to know what you think!</textarea></p>'
 );
 comment_form($args);
 }
