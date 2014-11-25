@@ -1542,6 +1542,8 @@ function pre_comment_approved_filter($approved, $commentdata){
 
 }//CLASS spComments
 
+add_filter('comment_text', 'comment_vote_choice');
+
 function comment_vote_choice( $comment_text){
 
         $comment_ID = get_comment_ID();
