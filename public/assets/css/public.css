@@ -273,9 +273,9 @@ time, mark, audio, video {
 	margin: 10px auto!important;
 	border: none!important;
 	box-shadow: none!important;
+	max-width:580px!important;
 	margin:25px auto!important;
 	padding:10px!important;
-	max-width:100%;
 }
 .comment{
 	margin: 0!important;
