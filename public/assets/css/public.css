@@ -1,6 +1,17 @@
 /* This stylesheet is used to style the public-facing components of the plugin. */
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
 
+.social_polling_answers button{
+	background: none;
+	text-shadow:none;
+	font:inherit;
+	color:initial;
+}
+
+.social_polling_answers button:hover{
+	background: none;
+}
+
 .answer_divs{
 	float:left;
 	width:50%;
@@ -186,20 +197,390 @@ xfilter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', en
 }
 
 
+#social_polling_already_voted_wrapper{
+	display: none;
+	font-size: 1.4em;
+	text-align: center;
+	width: 100%;
+	padding: 1em;
+}
+
+.comment_voted_a{
+	color: #1e8cbe;
+}
+
+.comment_voted_b{
+	color: #1ebe50;
+}
 
 @media screen (max-width: 400px) {
-.answer_divs p:first-child{
-	border-radius:300px;
-	overflow:hidden;
-	height:150px;
-	width:150px;
+	.answer_divs p:first-child{
+		border-radius:300px;
+		overflow:hidden;
+		height:150px;
+		width:150px;
+		margin:auto;
+	
+	}
+	
+}
+
+
+/*
+//----------------------------
+//Adjusted Comment Template
+//----------------------------
+*/
+#comments html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+#comments a{
+	text-decoration: none;
+	color:#b6b6b6;
+
+}
+#comments a:hover{
+	color:#111;
+}
+#comments a:visited{
+
+}
+#comments a:active{
+
+}
+
+#comments{
+	text-align: initial!important;
+	padding: 0!important;
+	margin: 10px auto!important;
+	border: none!important;
+	box-shadow: none!important;
+	width:580px!important;
+	margin:25px auto!important;
+	padding:10px!important;
+	max-width:100%;
+}
+.comment{
+	margin: 0!important;
+	padding: 0!important;
+	width: 100%!important;
+	border: none!important;
+}
+
+#sp_comments_order{
+	margin-bottom: 25px;
+	width: auto;
+}
+
+
+.sp_comment-list{
+	width: 100%;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+.sp_comment-list ol,.sp_comment-list li{
+	list-style-type: none!important;
+}
+
+.children{
+	margin: 0 0 0 40px;
+}
+
+/*single comment styling*/
+.comment-body{
+	margin: 0 0 15px 0 !important;
+	padding: 0!important;
+	font-size: 14px;
+	width: 100% !important;
+	border:none !important;
+	background: none !important;
+}
+
+.comment-body p{
+	line-height: 20px;
+}
+
+.comment-author-container{
+}
+
+/*comment date*/
+
+.commentmetadata{
+	display: inline-block;
+	font-size: .8em;
+	float: left;
+	vertical-align: bottom;
+	line-height: 0;
+}
+
+/*user information*/
+.comment-author{
+	height: auto;
+	width: auto;
+	margin: 0;
+	float: left;
+	color: inherit;
+	background: none!important;
+}
+
+.comment-author.vcard{
+	display: inline;
+	padding: 0;
+	float: left;
+	width: auto;
+	max-width: 100%!important;
+	background-color: none;
+}
+.comment-author.vcard:before{
+	display: none!important;
+}
+
+.comment-author.vcard .says{
+	display: none;
+}
+.comment-author.vcard .avatar.photo, .comment-author.vcard .avatar-32.photo{
+	position: static;
+	display: inline;
+	vertical-align: initial;
+	height: 25px;
+	width: 25px;
+	/*border: 1px solid rgba(0,0,0,0.1);*/
+	border: none;
+	padding: 0px;
+	border-radius: 0px;
+	margin: 0 5px 0 0;
+	float: none;
+}
+.comment-author.vcard cite.fn{
+/*	vertical-align: text-bottom;
+	line-height: 0px;*/
+	max-width: 100px;
+	font:inherit;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 700;
+	background: none;
+	padding: 0;
+	margin: 0;
+	display: inline;
+	line-height: inherit;
+	color: inherit;
+	float: none;
+
+}
+.comment-author.vcard cite.fn:before{
+	display: none!important;
+}
+.comment-collapse-button{
+	float: right;
+}
+.comment-collapse-button a{
+	color: gray;
+	font-size: 20px;
+	font-weight: 800;
+	vertical-align: text-bottom;
+}
+
+/*voting controls*/
+
+.comment_controls{
+	display: inline-block;
+}
+.comment_vote_action.upvote{
+	display: inline-block;
+	padding: 0 6px 0 0;
+}
+.comment_vote_action.downvote{
+	display: inline-block;
+	padding: 0 0 0 6px;
+}
+
+.comment_controls .comment_karma_count{
+	display: inline-block;
+}
+
+.comment_vote_action .votingbutton{
+	height: 9px!important;
+}
+
+.comment-body a img{
+	padding: 0;
+	margin: 0;
+}
+
+.comment-body a img:hover
+{
+	opacity: 0.5;
+}
+
+.comment-pipe{
+	margin: 0 5px;
+}
+.reply-vote-share-container a{
+	text-decoration: none;
+	color: gray;
+}
+
+.comment-reply-link{
+	padding: 0!important;
+	border: none!important;
+	background:none!important;
+}
+
+.comment-reply-link:hover{
+	box-shadow: none!important;
+	border: none;
+}
+
+.comment-reply-link::before{
+	display: none!important;
+	content: "";
+}
+
+/*comment body text*/
+.comment-awaiting-moderation{
+	padding-left: 0!important;
+}
+
+.comment-body p{
+	display: block;
+	margin: 5px 0 !important;
+	text-align: left;
+	
+	/*word-wrap:break-word;*/
+}
+
+.odd, .even{
+	background: none!important;
+}
+
+.comment-social-share{
+	display: inline-block;
+	opacity: 0;
+}
+
+/*submit section*/
+#respond{
+	float: none!important;
+	width: auto!important;
+	margin: 10px 0 0 0!important;
+	background: none !important;
+	border: none !important;
+	padding: 0!important;
+}
+
+#respond  .logged-in-as a{
+	color:inherit;
+	
+}
+#respond #reply-title{ 
+	clear: both;
+	margin:0 0 10px 0;
+	font-size: 1.2em;
+	font-weight: 400;
+	letter-spacing: -0.04em;
+}
+
+.comment-reply-title small a{
+	float: right;
+}
+
+#commentform{
+	padding: 0!important;
+	margin: 0 0 15px 0!important;
+	border: none;
+	background: none!important;
+}
+
+#commentform .logged-in-as{
+	margin: 0 0 10px 0;
+}
+
+#commentform .comment-form-comment label{
+	margin: 0 0 10px 0;
+	float: none!important;
+}
+
+
+#respond textarea{
+	width: 100%!important;
+	height: auto!important;
+	padding: 3px!important;
+	border-radius: 3px;
+	border: 1px solid #cccccc!important;
+}
+
+
+
+/*.joindiscussion,
+.comment-form #submit{
+	background-color:#499bea;
 	margin:auto;
-	
-}
-	
+	display:block;
+	font-size: 2em;
+	font-weight: 100;
+	width:90%;
+	letter-spacing: -0.04em;
+	color:#ffffff;
+	text-shadow: 1px 1px #666;
+	min-height:2em;
+}*/
+
+.joindiscussion, .comment-form #submit{
+	color: white!important;
+	background: #bcbcbc!important;
+	padding: 4px 8px 4px 8px!important;
+	display: inline-block!important;
+	border-radius: 3px!important;
+	border: 0!important;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !important;
+	font-weight: 200!important;
+	line-height: 1.5!important;
+	width: 80%!important;
+	font-size: 1.4em!important;
+	text-transform: initial!important;
+	display: block!important;
+	margin: 0 auto!important;
+	margin-bottom: 10px !important;
+	box-shadow: none!important;
+	text-shadow:none!important;
+	background-image: none!important;
+	float: none!important;
+	height: auto!important;
+	text-indent: 0!important;
 }
 
+#respond .form-submit{
+	margin: 10px 0 20px 0;
+}
 
+#submit:HOVER
+{
+	background-color:#9F9F9F!important;
+}
+.form-allowed-tags{
+	display: none!important;
+
+}
 
 
 /*
@@ -208,7 +589,7 @@ xfilter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#499bea', en
 //----------------------------
 */
 
-.comment-author.vcard{
+/*.comment-author.vcard{
 	overflow:hidden;
 }
 #comments .comment-author .fn{
@@ -231,9 +612,6 @@ ol.sp_comment-list{ margin-bottom:0px;}
 .sp_comment-list .comment-author{ padding-left:0px; margin-bottom:10px;}
 .sp_comment-list .comment-author .avatar {
 position:relative;
-/*	height:50px;
-	width:50px;
-	*/
 }
 .sp_comment-list .author_date{
 	line-height:1em;
@@ -258,7 +636,6 @@ padding-right: 10px;
 }
 
 .sp_comment-list li.comment.depth-1{
-	/*border-bottom: 1px solid rgba(68, 68, 68, 0.15);*/
 	margin-bottom:1em;
 }
 
@@ -272,17 +649,17 @@ padding-right: 10px;
 
 .sp_comment-list .comment_karma_count
 { 
-float:none;
-margin:0; 
-color: inherit;
-padding: 0px 0px;
-border-radius:60px;
-width:20px;
-height:auto;
-text-align:center;
-line-height:1!important;
-font-size:1em;
-font-weight:bold;
+	float:none;
+	margin:0; 
+	color: inherit;
+	padding: 0px 0px;
+	border-radius:60px;
+	width:20px;
+	height:auto;
+	text-align:center;
+	line-height:1!important;
+	font-size:1em;
+	font-weight:bold;
 }
 
 
@@ -296,7 +673,7 @@ a.votingbutton img:HOVER
 	
 }
 .sp_comments-area.comments-area{
-	/*border: 1px solid rgba(68, 68, 68, 0.15);*/
+	
 	width:600px;
 	margin:25px auto;
 	padding:0px !important;
@@ -309,7 +686,6 @@ a.votingbutton img:HOVER
 	
 	
 }
-.sp_comment-list .children li{ /*border-bottom: 1px dotted rgba(68, 68, 68, 0.15); padding-top:10px;*/}
 .sp_comment-list .commentmetadata{
 	font-size:.6em;
 	float:right;
@@ -323,9 +699,6 @@ h2.comments-title{
 }
 #sp_comments_order{
 	text-align:right;
-	/*border-bottom:1px solid rgba(68, 68, 68, 0.15);
-	background-color:rgba(68, 68, 68, 0.15);*/
-
 	padding:5px;
 	padding-bottom:15px;
 }
@@ -351,9 +724,6 @@ letter-spacing: -0.04em;
 }
 #respond{
 	padding:10px;
-	/*background-color:rgba(68, 68, 68, 0.05);*/
-	
-	
 }
 
 
@@ -364,12 +734,12 @@ letter-spacing: -0.04em;
 	margin:auto;
 	display:block;
 	font-size: 2em;
-font-weight: 100;
-width:90%;
-letter-spacing: -0.04em;
-color:#ffffff;
-text-shadow: 1px 1px #666;
-min-height:2em;
+	font-weight: 100;
+	width:90%;
+	letter-spacing: -0.04em;
+	color:#ffffff;
+	text-shadow: 1px 1px #666;
+	min-height:2em;
 }
 
 #submit:HOVER
@@ -387,17 +757,10 @@ min-height:2em;
 		-ms-transition: all .4s;  
 		-o-transition: all .4s;  
 }
-
-/* Disable embedded youtube span class in Wordpress */
-
 .embed-youtube
 {
 	display: none;
 }
-
-
-
-/* Additions 7/25/14 BB - enhanced compatibility across sites and browsers */
 
 ol, ol ol, ol ol ol, ul, ul ul, ul ul ul, ul ol, ol ul, ol ol ul, ol ul ol, ol ul ul, ul ul ol, 
 {
@@ -433,23 +796,8 @@ ol li
 
 label.answer_label{
 color:black;
-}
+}*/
 
-#social_polling_already_voted_wrapper{
-display: none;
-font-size: 1.4em;
-text-align: center;
-width: 100%;
-padding: 1em;
-}
-
-.comment_voted_a{
-	color: #1e8cbe;
-}
-
-.comment_voted_b{
-	color: #1ebe50;
-}
 /*
 //----------------------------
 //END Comment Template

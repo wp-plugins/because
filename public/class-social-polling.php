@@ -91,7 +91,7 @@ class Social_Polling {
 		//do_action( 'comment_form_before' );
 		add_action( 'output_social_poll_action', array( $this, 'output_social_poll' ));
 		
-		//add_filter('wp_insert_comment', array( $this, 'message_reply_email'),  2, 2 );
+		add_filter('wp_insert_comment', array( $this, 'message_reply_email'),  2, 2 );
 		// do_action( 'wp_insert_comment', $id, $comment );
 		 
 		 
@@ -134,7 +134,8 @@ class Social_Polling {
 	 * 
 	 */
 
-	/* function message_reply_email( $id, $comment){
+	/*
+	function message_reply_email( $id, $comment){
 		
 		
 		
@@ -192,7 +193,7 @@ class Social_Polling {
 		//echo 'HELLO';
 	}//
 	
-	
+	*/
 	
 	
 	/**

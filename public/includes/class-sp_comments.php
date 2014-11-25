@@ -1542,8 +1542,6 @@ function pre_comment_approved_filter($approved, $commentdata){
 
 }//CLASS spComments
 
-add_filter('comment_text', 'comment_vote_choice');
-
 function comment_vote_choice( $comment_text){
 
         $comment_ID = get_comment_ID();
@@ -1566,25 +1564,25 @@ function comment_vote_choice( $comment_text){
 
 function mytheme_comment($comment, $args, $depth) {
 
-		$GLOBALS['comment'] = $comment;
+	$GLOBALS['comment'] = $comment;
 
-		extract($args, EXTR_SKIP);
+	extract($args, EXTR_SKIP);
 
 
 
-		if ( 'div' == $args['style'] ) {
+	if ( 'div' == $args['style'] ) {
 
-			$tag = 'div';
+		$tag = 'div';
 
-			$add_below = 'comment';
+		$add_below = 'comment';
 
-		} else {
+	} else {
 
-			$tag = 'li ';
+		$tag = 'li ';
 
-			$add_below = 'div-comment';
+		$add_below = 'div-comment';
 
-		}
+	}
 
 ?>
 
@@ -1594,65 +1592,48 @@ function mytheme_comment($comment, $args, $depth) {
 
 		<div id="div-comment-<?php comment_ID() ?>" class="comment-body">
 
-        
+		<div class="comment-author-container">
 
-        
+			<div class="comment-author vcard">
 
-         <div class="comment-meta commentmetadata">
+				<?php 
+					if ($args['avatar_size'] != 0):
 
-  	<a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>">
+						echo get_avatar( $comment, $args['avatar_size'] ); 
 
-    <?php
+					endif;
 
-		/* translators: 1: date, 2: time */
+				?>
+				<?php printf(__('<cite class="fn">%s</cite> <span class="says">says:</span>'), get_comment_author_link()) ?> 
+				<span style="padding: 0 6px;">|</span>
 
-		printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time()) ?>
+				<!-- <div style="clear:both"></div> -->
 
-    </a>
+	       		 <!-- <div class="comment-meta commentmetadata"> -->
 
-    <?php edit_comment_link(__('(Edit)'),'  ','' );?>
+				  	<a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ) ?>">
 
-  </div><?php //.comment-meta.commentmetadata ?>
+				    <?php
 
-        
+						/* translators: 1: date, 2: time */
 
-        
+						printf( __('%1$s at %2$s'), get_comment_date("n/d/Y"),  get_comment_time()) ?>
 
-  	<?php endif; ?>
+				    </a>
 
-  	<div class="comment-author vcard">
+				    <?php edit_comment_link(__('(Edit)'),'  ','' );?>
+			    <!-- </div><?php //.comment-meta.commentmetadata ?> -->
+		    </div>
 
-	  <?php 
+		    <div class="comment-collapse-button"><a href="#">-</a></div>
 
-	  
 
-      if ($args['avatar_size'] != 0):
+	  		
+	  		<div style="clear:both"></div>
+	  	</div>
+	<?php endif; ?>
 
-          echo get_avatar( $comment, $args['avatar_size'] ); 
-
-      endif;
-
-      ?>
-
-   	
-
-	
-
-	<?php printf(__('<cite class="fn">%s</cite> <span class="says">says:</span>'), get_comment_author_link()) ?> 
-
-      
-
-      
-
-   
-
-     
-
-      
-
-      <div style="clear:both"></div>
-
-    </div><?php //.comment-author vcard ?>
+		  	
 
     
 
@@ -1675,7 +1656,13 @@ function mytheme_comment($comment, $args, $depth) {
  
 
   
+  <div class="comment-collapse">
 
+  <?php comment_text() ?>
+
+  
+
+  
 <?php   //Upvote DownVote Actions
 
   
@@ -1688,32 +1675,25 @@ function mytheme_comment($comment, $args, $depth) {
 
   ob_start();?>
 
-	<style type="text/css">
-
-		.comment_vote_action{ display:block; overflow:hidden; margin-right:5px;}
-
-		 .comment_karma_count{ float:none; margin-right:5px; vertical-align:middle;}
-
-	</style>
 
 	<div class="comment_controls">
 
   		
 
-<a data-nonce="<?php echo $comment_nonce; ?>" class="upvote comment_vote_action" href="javascript:void(0)" data_action="upvote" data-comment_id="<?php echo $comment->comment_ID;?>">
-<?php
-echo '<img src="' . plugins_url( '../../assets/upvote.png' , __FILE__ ) . '" class="votingbutton"> ';
-?>
-</a>
-  			 <div class="comment_karma_count"><?php echo $comment_karma; ?></div>
-<a data-nonce="<?php echo $comment_nonce; ?>" class="downvote comment_vote_action" href="javascript:void(0)" data_action="downvote"  data-comment_id="<?php echo $comment->comment_ID;?>">
-<?php
-echo '<img src="' . plugins_url( '../../assets/downvote.png' , __FILE__ ) . '" class="votingbutton"> ';
-?> 
-</a>
- <?php /*?><a  data-nonce="<?php echo $comment_nonce; ?>" class="flag comment_vote_action" href="javascript:void(0)" data_action="flag"  data-comment_id="<?php echo $comment->comment_ID;?>"><strong>!</strong>Flag Comment</a><?php */?>
+			<a data-nonce="<?php echo $comment_nonce; ?>" class="upvote comment_vote_action" href="javascript:void(0)" data_action="upvote" data-comment_id="<?php echo $comment->comment_ID;?>">
+			<?php
+			echo '<img src="' . plugins_url( '../../assets/upvote.png' , __FILE__ ) . '" class="votingbutton"> ';
+			?>
+			</a>
+			  			 <div class="comment_karma_count"><?php echo $comment_karma; ?></div>
+			<a data-nonce="<?php echo $comment_nonce; ?>" class="downvote comment_vote_action" href="javascript:void(0)" data_action="downvote"  data-comment_id="<?php echo $comment->comment_ID;?>">
+			<?php
+			echo '<img src="' . plugins_url( '../../assets/downvote.png' , __FILE__ ) . '" class="votingbutton"> ';
+			?> 
+			</a>
+			 
 
-        </div>
+    </div>
 
 <?php 
 
@@ -1721,7 +1701,7 @@ echo '<img src="' . plugins_url( '../../assets/downvote.png' , __FILE__ ) . '" c
 
 	  ob_end_clean();
 
-	  echo $upvote_downvote
+	 
 
    //End Upvote Down Vote Controls. ?> 
 
@@ -1729,19 +1709,25 @@ echo '<img src="' . plugins_url( '../../assets/downvote.png' , __FILE__ ) . '" c
 
   
 
-  <?php comment_text() ?>
+  <div class="reply-vote-share-container">
 
-  
+  	<?php  echo $upvote_downvote; ?>
 
-  
+  	<span class="comment-pipe">|</span>
+	  
 
-  
+	    <?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
 
-  <div class="reply">
-
-    <?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
+	 
+	  <!-- <span class="comment-pipe">|</span>
+	  <a href="#">Share</a>
+	  <div class="comment-social-share">aaa</div> -->
 
   </div>
+
+  </div>
+  
+
 
   <?php if ( 'div' != $args['style'] ) : ?>
 
