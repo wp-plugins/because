@@ -160,7 +160,7 @@ $('#answer_2_wrapper .poll_results').html($answer2_html);
 		setTimeout(function() {
 			var $comment_box_offset = $('#respond').offset().top + 'px';
   $("html, body").animate({ scrollTop: $comment_box_offset  }, 450);
-}, 100);
+}, 2000);
 
 //$('#social_polling_see_results_wrapper').html('You Already Voted');
 				
@@ -508,8 +508,30 @@ $('#answer_2_wrapper .poll_results').html($answer2_html);
 	})//jQuery('#commentform textarea#comment').keypress(function(e) {
 
 	
+	$(document).on('click', '.social_share', function(){
+		// alert('share click');
+		$(this).after('<p>ssdkflnsdflknsdklfnsdkfns</p>')
+		return false;
+	})
 
-	
+	$(document).on('click', '.comment-collapse-button', function(){
+		// $(this)
+		if($(this).parents('.comment-body').children('.comment-collapse').css('display')==='block'){
+			$(this).parents('.comment-body').children('.comment-collapse').css('display','none');
+			$(this).parents('.comment-body').siblings().css('display','none');
+			$(this).children('a').text('+');
+			$(this).siblings('.comment-author').css('opacity','.4');
+		}
+		else{
+			$(this).parents('.comment-body').children('.comment-collapse').css('display','block');
+			$(this).parents('.comment-body').siblings().css('display','block');	
+			$(this).children('a').text('-');
+			$(this).siblings('.comment-author').css('opacity','1');
+		}
+		
+		// if ($(this))
+		return false;
+	})
 
 	
 
