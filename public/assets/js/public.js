@@ -533,19 +533,46 @@ $('#answer_2_wrapper .poll_results').html($answer2_html);
 		return false;
 	})
 
-	
+	// Comment sharing javascript
 
-	
+	var fadeOut = "";
 
-	
+	$('.share-anchor').mouseover(function(){
+		$(this).siblings('.comment-social-share').stop();
+		$(this).siblings('.comment-social-share').css('display','inline-block').animate({
+			opacity: 1
+		}, 300);
+	})
 
-	
+	$('.share-anchor').click(function(){
+		clearTimeout(fadeOut);
 
-	
+		$(this).siblings('.comment-social-share').stop();
+		$(this).siblings('.comment-social-share').css('display','inline-block').animate({
+			opacity: 1
+		}, 300);
+	})
 
-	
+	$('.reply-vote-share-container').mouseover(function(){
+		clearTimeout(fadeOut);		
+	});
 
-	
+	$('.reply-vote-share-container').mouseleave(function(){
+			if($(this).children('.comment-social-share').css('opacity') === '1'){
+				$(this).children('.comment-social-share').stop();
+				var tempDiv = $(this);
+				fadeOut = setTimeout(function(){
+					tempDiv.children('.comment-social-share').animate({
+						opacity: 0
+					},300, function(){
+						$(this).css('display','none');
+					});
+				},700)
+					
+			}
+
+			
+	})
 
 		
 

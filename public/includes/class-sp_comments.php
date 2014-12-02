@@ -1721,9 +1721,31 @@ function mytheme_comment($comment, $args, $depth) {
 	    <?php comment_reply_link(array_merge( $args, array('add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth']))) ?>
 
 	 
-	  <!-- <span class="comment-pipe">|</span>
-	  <a href="#">Share</a>
-	  <div class="comment-social-share">aaa</div> -->
+		<span class="comment-pipe">|</span>
+		<a href="#" class="share-anchor" onclick="return false;">Share</a>
+		<div class="comment-social-share">
+				<a href="<?php 
+					echo 'https://www.facebook.com/sharer/sharer.php?app_id=113869198637480&sdk=joey&u=' . urlencode(htmlspecialchars( get_comment_link( $comment->comment_ID ) )) . '&display=popup&ref=plugin';
+
+				?>" target="_blank">
+					<?php 
+						echo '<img src="' . plugins_url('../../assets/fb.png', __FILE__) . '" class="social-share-button">'
+
+					?>
+				</a>
+				<a href="<?php 
+					echo 'https://twitter.com/intent/tweet?text=' . urlencode(htmlspecialchars( get_comment_link( $comment->comment_ID ) )) . urlencode(' I just commented on "' . get_the_title() . '"');
+				?>" target="_blank">
+					<?php 
+						echo '<img src="' . plugins_url('../../assets/twit.png', __FILE__) . '" class="social-share-button">'
+				?>
+				</a>
+			<a href="https://plus.google.com/share?url=<?php echo urlencode(htmlspecialchars( get_comment_link( $comment->comment_ID ) )) ?>" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+					<?php 
+						echo '<img src="' . plugins_url('../../assets/gplus.png', __FILE__) . '" class="social-share-button">'
+				?>
+				</a>
+		</div>
 
   </div>
 

@@ -455,6 +455,16 @@ time, mark, audio, video {
 	content: "";
 }
 
+.comment-social-share{
+	display: inline-block;
+	opacity: 0;
+}
+
+.comment-body a img.social-share-button{
+	height: 13px;
+	margin: 0 0 3px 10px;
+}
+
 /*comment body text*/
 .comment-awaiting-moderation{
 	padding-left: 0!important;
@@ -464,17 +474,10 @@ time, mark, audio, video {
 	display: block;
 	margin: 5px 0 !important;
 	text-align: left;
-	
-	/*word-wrap:break-word;*/
 }
 
 .odd, .even{
 	background: none!important;
-}
-
-.comment-social-share{
-	display: inline-block;
-	opacity: 0;
 }
 
 /*submit section*/
