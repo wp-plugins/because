@@ -1673,7 +1673,6 @@ function mytheme_comment($comment, $args, $depth) {
   
   <div class="comment-collapse">
 
-<<<<<<< .mine
 
   <span class="<?php echo comment_vote_choice($comment); ?>">
   <?php comment_text() ?>
@@ -1682,13 +1681,6 @@ function mytheme_comment($comment, $args, $depth) {
   
 
   
-=======
-  <?php comment_text() ?>
-
-  
-
-  
->>>>>>> .r1038433
 <?php   //Upvote DownVote Actions
 
   

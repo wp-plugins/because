@@ -501,17 +501,10 @@
 		}, 300);
 	})
 
-<<<<<<< .mine
 	$('.reply-vote-share-container').mouseover(function(){
 		clearTimeout($(this).data('timeout'));		
 	});
-=======
-	$('.reply-vote-share-container').mouseover(function(){
-		clearTimeout(fadeOut);		
-	});
->>>>>>> .r1038433
 
-<<<<<<< .mine
 	$('.reply-vote-share-container').mouseleave(function(){
 			if($(this).children('.comment-social-share').css('opacity') === '1'){
 				$(this).children('.comment-social-share').stop();
@@ -525,21 +518,6 @@
 				},1000)
 				$(this).data('timeout', fadeOut);
 			}
-=======
-	$('.reply-vote-share-container').mouseleave(function(){
-			if($(this).children('.comment-social-share').css('opacity') === '1'){
-				$(this).children('.comment-social-share').stop();
-				var tempDiv = $(this);
-				fadeOut = setTimeout(function(){
-					tempDiv.children('.comment-social-share').animate({
-						opacity: 0
-					},300, function(){
-						$(this).css('display','none');
-					});
-				},700)
-					
-			}
->>>>>>> .r1038433
 
 			
 	})
