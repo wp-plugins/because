@@ -1542,26 +1542,39 @@ function pre_comment_approved_filter($approved, $commentdata){
 
 }//CLASS spComments
 
-add_filter('comment_text', 'comment_vote_choice');
+// add_filter('comment_text', 'comment_vote_choice');
 
-function comment_vote_choice( $comment_text){
+// function comment_vote_choice( $comment_text){
 
-        $comment_ID = get_comment_ID();
+//         $comment_ID = get_comment_ID();
     
-        $retVal = "<p";
+//         $retVal = "<span";
         
-        $test = get_comment_meta($comment_ID,"vote_choice",true);
+//         $test = get_comment_meta($comment_ID,"vote_choice",true);
 
-        if ($test == "one"){
-            $retVal = $retVal . " class='comment_voted_a'";
-        }
-        elseif ($test == "two") {
-        	$retVal = $retVal . " class='comment_voted_b'";
-        }
+//         if ($test == "one"){
+//             $retVal = $retVal . " class='comment_voted_a'";
+//         }
+//         elseif ($test == "two") {
+//         	$retVal = $retVal . " class='comment_voted_b'";
+//         }
         
-        $retVal = $retVal . ">$comment_text</p>";
+//         $retVal = $retVal . ">$comment_text</span>";
 
-        return $retVal;
+//         return $retVal;
+// }
+
+function comment_vote_choice($comment){
+	$vote_choice = get_comment_meta($comment->comment_ID,"vote_choice",true);
+	if ($vote_choice == "one"){
+		return "comment_voted_a";
+    }
+    elseif ($vote_choice == "two") {
+    	return "comment_voted_b";
+    }
+    else{
+    	return "";
+    }	
 }
 
 function mytheme_comment($comment, $args, $depth) {
@@ -1660,11 +1673,22 @@ function mytheme_comment($comment, $args, $depth) {
   
   <div class="comment-collapse">
 
+<<<<<<< .mine
+
+  <span class="<?php echo comment_vote_choice($comment); ?>">
+  <?php comment_text() ?>
+  </span>
+
+  
+
+  
+=======
   <?php comment_text() ?>
 
   
 
   
+>>>>>>> .r1038433
 <?php   //Upvote DownVote Actions
 
   

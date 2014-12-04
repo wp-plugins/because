@@ -6,9 +6,9 @@ Tags: comments,spam,polling, opinions,community,because,social,moderation,conver
 Requires at least: 3.5.1
 Tested up to: 4.0
 <<<<<<< .mine
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 =======
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 >>>>>>> .r969865
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -21,7 +21,7 @@ Because is an online commenting platform designed to enhance the interaction bet
 
 A more engaged community. More traffic. Better page rank. Audience insight. By better serving users, Because can better serve sites. Think of it as a new wave comment section.
 
-[youtube http://www.youtube.com/watch?v=t_3Lc1CvmiQ] 
+[youtube https://www.youtube.com/watch?v=HuuabAzUpAQ] 
 
 == Installation ==
 

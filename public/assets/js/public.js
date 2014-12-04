@@ -116,80 +116,55 @@
 
 			success:function(data){
 
-	var answer_1 = data.social_poll_answer_1;
+				var answer_1 = data.social_poll_answer_1;
 
-var answer_2 = data.social_poll_answer_2;
-
-
-var answer_1_votes = data.social_poll_answer_1.total_votes;
-
-var answer_2_votes = data.social_poll_answer_2.total_votes;
-var answer_1_percent = (answer_1_votes/(answer_1_votes+answer_2_votes)*100).toFixed(2);
-var answer_2_percent = (answer_2_votes/(answer_1_votes+answer_2_votes)*100).toFixed(2);
-
-var answer_1_text = data.social_poll_answer_1.answer_text;
-
-var answer_2_text = data.social_poll_answer_2.answer_text;
+				var answer_2 = data.social_poll_answer_2;
 
 
+				var answer_1_votes = data.social_poll_answer_1.total_votes;
 
-var $results_html = '<div class="one_result_box" id="results_box_'+$post_id+'"><p><span class="results_answer_text">'+answer_1_text+'</span> :<span class="results_answer_value">'+answer_1_percent+'</span></p>'
+				var answer_2_votes = data.social_poll_answer_2.total_votes;
+				var answer_1_percent = (answer_1_votes/(answer_1_votes+answer_2_votes)*100).toFixed(2);
+				var answer_2_percent = (answer_2_votes/(answer_1_votes+answer_2_votes)*100).toFixed(2);
 
-+'<p><span class="results_answer_text">'+answer_2_text+'</span> :<span class="results_answer_value">'+answer_2_percent+'</div></p></div>';
+				var answer_1_text = data.social_poll_answer_1.answer_text;
 
-//$('#social_polling_see_results_wrapper').html($results_html);
+				var answer_2_text = data.social_poll_answer_2.answer_text;
 
 
 
-//var $answer1_html = answer_1_text+' '+answer_1_votes;
+				var $results_html = '<div class="one_result_box" id="results_box_'+$post_id+'"><p><span class="results_answer_text">'+answer_1_text+'</span> :<span class="results_answer_value">'+answer_1_percent+'</span></p>'
 
-//var $answer2_html = answer_2_text+' '+answer_2_votes;
-
-
-var $answer1_html = '<h1>'+answer_1_percent+'%</h1>';
-
-var $answer2_html = '<h1>'+answer_2_percent+'%</h1>';	
-
-
-
-$('#answer_1_wrapper .poll_results').html($answer1_html);
-
-$('#answer_2_wrapper .poll_results').html($answer2_html);
-
-
-		setTimeout(function() {
-			var $comment_box_offset = $('#respond').offset().top + 'px';
-  $("html, body").animate({ scrollTop: $comment_box_offset  }, 450);
-}, 2000);
-
-//$('#social_polling_see_results_wrapper').html('You Already Voted');
-				
+				+'<p><span class="results_answer_text">'+answer_2_text+'</span> :<span class="results_answer_value">'+answer_2_percent+'</div></p></div>';
 
 				
+				var $answer1_html = '<h1>'+answer_1_percent+'%</h1>';
+				var $answer2_html = '<h1>'+answer_2_percent+'%</h1>';	
 
-				
 
-				
 
-				
+				$('#answer_1_wrapper .poll_results').html($answer1_html);
+				$('#answer_2_wrapper .poll_results').html($answer2_html);
 
-				
 
-				
+				setTimeout(function() {
+					var $comment_box_offset = $('#respond').offset().top + 'px';
+					$("html, body").animate({ scrollTop: $comment_box_offset  }, 450);
+				}, 1000);
 
+				// var $comment_box_offset = $('#respond').offset().top + 'px';
+				// $("html, body").animate({ scrollTop: $comment_box_offset  }, 450);
+	
 			}//success
-
 		
-
-		});//$.ajax({
-
-		
+		});//$.ajax({		
 
 	}//show_results
 
-	
+	$(window).bind('mousewheel DOMMouseScroll', function(event){
+	    $("html, body").stop();
+	});
 
-	
 
 	
 
@@ -353,18 +328,6 @@ $('#answer_2_wrapper .poll_results').html($answer2_html);
 
 				
 
-				//alert(data);
-
-				//show_results($post_id);
-
-				
-
-				
-
-				//console.log(data+ajaxurl);
-
-				
-
 			}//success
 
 		});//$.ajax({
@@ -431,16 +394,6 @@ $('#answer_2_wrapper .poll_results').html($answer2_html);
 
 				
 
-				//alert(data);
-
-				//show_results($post_id);
-
-				
-
-				
-
-				//console.log(data+ajaxurl);
-
 				
 
 			}//success
@@ -481,29 +434,24 @@ $('#answer_2_wrapper .poll_results').html($answer2_html);
 
 	//Character limit
 
-	jQuery('#commentform textarea#comment').keypress(function(e) {
+	$('#commentform textarea#comment').keyup(function(e) {
 
 			
 
-		jQuery('#commentform textarea#comment').attr('maxlength', 280);	
+		$('#commentform textarea#comment').attr('maxlength', 280);	
 
-			
+		var tval = jQuery('#commentform textarea#comment').val(),
+			tlength = tval.length,
+			set = 280,
+			remain = parseInt(set - tlength);
 
-  		  var tval = jQuery('#commentform textarea#comment').val(),
+		$('#commentform .comment-characters-remaining span').text(remain);
 
-       		  tlength = tval.length,
+	    if (remain <= 0 && e.which !== 0 && e.charCode !== 0) {
 
-              set = 280,
+	        jQuery('#commentform textarea').val((tval).substring(0, tlength - 1))
 
-              remain = parseInt(set - tlength);
-
-    		  jQuery('#charcters_left').html(remain);
-
-    if (remain <= 0 && e.which !== 0 && e.charCode !== 0) {
-
-        jQuery('#commentform textarea').val((tval).substring(0, tlength - 1))
-
-    }
+	    }
 
 	})//jQuery('#commentform textarea#comment').keypress(function(e) {
 
@@ -553,10 +501,31 @@ $('#answer_2_wrapper .poll_results').html($answer2_html);
 		}, 300);
 	})
 
+<<<<<<< .mine
+	$('.reply-vote-share-container').mouseover(function(){
+		clearTimeout($(this).data('timeout'));		
+	});
+=======
 	$('.reply-vote-share-container').mouseover(function(){
 		clearTimeout(fadeOut);		
 	});
+>>>>>>> .r1038433
 
+<<<<<<< .mine
+	$('.reply-vote-share-container').mouseleave(function(){
+			if($(this).children('.comment-social-share').css('opacity') === '1'){
+				$(this).children('.comment-social-share').stop();
+				var tempDiv = $(this);
+				fadeOut = setTimeout(function(){
+					tempDiv.children('.comment-social-share').animate({
+						opacity: 0
+					},300, function(){
+						$(this).css('display','none');
+					});
+				},1000)
+				$(this).data('timeout', fadeOut);
+			}
+=======
 	$('.reply-vote-share-container').mouseleave(function(){
 			if($(this).children('.comment-social-share').css('opacity') === '1'){
 				$(this).children('.comment-social-share').stop();
@@ -570,6 +539,7 @@ $('#answer_2_wrapper .poll_results').html($answer2_html);
 				},700)
 					
 			}
+>>>>>>> .r1038433
 
 			
 	})
