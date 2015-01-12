@@ -82,6 +82,12 @@ class spComments {
 
 			add_action('comment_post', array( $this,'check_user_vote'));
 
+			add_action('comment_post', array( $this,'add_subscription'));
+
+			add_action('comment_post', array( $this,'notify_email'));
+
+			
+
 			
 
 			//Add on stuff to right after text box.
@@ -176,7 +182,6 @@ class spComments {
 			$table = $wpdb->prefix . "postmeta";
 			$query = "SELECT meta_key FROM $table WHERE post_id='" . $post_id . "' AND meta_value='" . $vote_val->vote_value . "'";
 			$ans_choice = $wpdb->get_row($query);
-            add_comment_meta($comment_id,'test','test');   
 
             // add vote identifier to the comment
 			if ($ans_choice->meta_key == "social_polling_answer_one_field" || $ans_choice->meta_key == "_social_polling_answer_one_field"){
@@ -188,6 +193,41 @@ class spComments {
 		}
 	}
 
+	public function add_subscription($comment_id){
+		global $wpdb;
+
+		if ($_POST['subscribe_comments']=="yes"){
+			
+			add_comment_meta($comment_id,'subscribed','yes');
+		}
+	}
+
+	public function notify_email($comment_id){
+		$comment = get_comment($comment_id);
+
+		if ('0' != $comment->comment_parent){
+			$a = get_comment_meta($comment->comment_parent,'subscribed',true);
+			
+			if(get_comment_meta($comment->comment_parent,'subscribed',true)=="yes"){
+				$parent_comment = get_comment($comment->comment_parent);
+				
+				$message = "Someone has replied to your comment on the post: '" . get_the_title() . "'!\n\n" .
+				"You can view the comment at the following link: " .
+				get_post_permalink() . "#comment-" . $comment_id;
+
+
+
+				wp_mail( $parent_comment->comment_author_email, 'You have a reply to your wordpress comment!', $message );
+
+				
+
+
+			}
+
+			
+
+		}
+	}
 
 	  /**
 
@@ -1479,6 +1519,8 @@ function comment_form_field_comment_filter($text_area){
 	ob_start();?>	
 
     <input type="hidden"  name="comment" id="thecomment_field" value="socialpolling_verb" readonly="readonly" />
+    <input type="checkbox" name="subscribe_comments" id="subscribe_comments" value="yes">
+    <label for="subscribe_comments">Do you want to be emailed if someone replies to your comment?</label>
 
 	<?php
 

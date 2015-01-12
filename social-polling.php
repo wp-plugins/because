@@ -20,22 +20,22 @@
 
  * @link      http://www.teambecause.com
 
- * @copyright 2014 TeamBecause LLC
+ * @copyright 2014 Conva LLC
 
  *
 
  * @wordpress-plugin
 
- * Plugin Name:       Because
+ * Plugin Name:       Conva
 
- * Plugin URI:        www.teambecause.com
+ * Plugin URI:        www.conva.us
 
- * Description:       Because is a new commenting platform that increases audience engagement by providing new avenues for channelling audience discussions.
+ * Description:       Conva is a new commenting platform that increases audience engagement by providing new avenues for channelling audience discussions.
 
 <<<<<<< .mine
- * Version:           1.5.3
+ * Version:           1.6
 =======
- * Version:           1.5.3
+ * Version:           1.6
 >>>>>>> .r969865
 
  * Author:            T.J. Santillo
