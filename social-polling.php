@@ -18,7 +18,7 @@
 
  * @license   GPL-2.0+
 
- * @link      http://www.teambecause.com
+ * @link      http://www.conva.us
 
  * @copyright 2014 Conva LLC
 
